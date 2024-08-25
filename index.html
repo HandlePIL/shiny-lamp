@@ -24,28 +24,13 @@
             text-align: center;
             text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
         }
-        #volumeControl {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            color: white;
-        }
-        #volumeLabel {
-            margin-right: 10px;
-        }
     </style>
 </head>
 <body>
     <div id="countdown"></div>
     
     <!-- Audio element to play the sound -->
-    <audio id="audioPlayer" src="song.wav" preload="auto"></audio>
-    
-    <!-- Volume control -->
-    <div id="volumeControl">
-        <label id="volumeLabel" for="volume">Volume:</label>
-        <input type="range" id="volume" min="0" max="1" step="0.1" value="1" />
-    </div>
+    <audio id="audioPlayer" src="song.mp3" preload="auto"></audio>
 
     <script>
         // Set the date we're counting down to
@@ -81,14 +66,6 @@
                 });
             }
         }, 1000);
-
-        // Adjust the volume based on the slider input
-        const volumeControl = document.getElementById('volume');
-        const audioPlayer = document.getElementById('audioPlayer');
-
-        volumeControl.addEventListener('input', function() {
-            audioPlayer.volume = volumeControl.value;
-        });
     </script>
 </body>
 </html>
