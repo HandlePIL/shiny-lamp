@@ -29,12 +29,25 @@
 <body>
     <div id="countdown"></div>
     
-    <!-- Audio element to play the sound automatically and loop -->
-    <audio id="audioPlayer" src="song.mp3" preload="auto" autoplay loop></audio>
+    <!-- Audio element with controls for debugging -->
+    <audio id="audioPlayer" src="song.mp3" preload="auto" loop></audio>
 
     <script>
         // Set the date we're counting down to
         const countDownDate = new Date("June 22, 2026 00:00:00").getTime();
+        
+        // Get the audio element
+        const audioPlayer = document.getElementById("audioPlayer");
+
+        // Function to play audio
+        function playAudio() {
+            audioPlayer.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
+        }
+
+        // Event listener to play audio on any user interaction
+        document.addEventListener('click', playAudio);
 
         // Update the countdown every second
         const countdownfunction = setInterval(function() {
@@ -58,6 +71,9 @@
             if (distance < 0) {
                 clearInterval(countdownfunction);
                 document.getElementById("countdown").innerHTML = "EXPIRED";
+                
+                // Play the sound
+                playAudio();
             }
         }, 1000);
     </script>
