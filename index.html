@@ -27,6 +27,9 @@
 </head>
 <body>
     <div id="countdown"></div>
+    
+    <!-- Audio element to play the sound -->
+    <audio id="audioPlayer" src="song.wav" preload="auto"></audio>
 
     <script>
         // Set the date we're counting down to
@@ -50,13 +53,16 @@
             document.getElementById("countdown").innerHTML = 
                 days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
             
-            // If the countdown is finished, write some text
+            // If the countdown is finished, write some text and play the sound
             if (distance < 0) {
                 clearInterval(countdownfunction);
                 document.getElementById("countdown").innerHTML = "EXPIRED";
+                
+                // Play the sound
+                const audioPlayer = document.getElementById("audioPlayer");
+                audioPlayer.play();
             }
         }, 1000);
     </script>
 </body>
 </html>
-
