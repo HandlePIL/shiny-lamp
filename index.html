@@ -29,8 +29,11 @@
 <body>
     <div id="countdown"></div>
     
-    <!-- Audio element to play the sound -->
-    <audio id="audioPlayer" src="song.mp3" preload="auto"></audio>
+    <!-- Audio element with controls for debugging -->
+    <audio id="audioPlayer" src="song.mp3" preload="auto" controls></audio>
+    
+    <!-- Button to manually trigger audio playback -->
+    <button onclick="playAudio()">Play Sound</button>
 
     <script>
         // Set the date we're counting down to
@@ -66,6 +69,14 @@
                 });
             }
         }, 1000);
+
+        // Function to play audio when button is clicked
+        function playAudio() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
+        }
     </script>
 </body>
 </html>
