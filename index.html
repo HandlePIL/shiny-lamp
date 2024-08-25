@@ -29,11 +29,8 @@
 <body>
     <div id="countdown"></div>
     
-    <!-- Audio element with controls for debugging -->
-    <audio id="audioPlayer" src="song.mp3" preload="auto" controls></audio>
-    
-    <!-- Button to manually trigger audio playback -->
-    <button onclick="playAudio()">Play Sound</button>
+    <!-- Audio element to play the sound automatically and loop -->
+    <audio id="audioPlayer" src="song.mp3" preload="auto" autoplay loop></audio>
 
     <script>
         // Set the date we're counting down to
@@ -57,26 +54,12 @@
             document.getElementById("countdown").innerHTML = 
                 days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
             
-            // If the countdown is finished, write some text and play the sound
+            // If the countdown is finished, write some text
             if (distance < 0) {
                 clearInterval(countdownfunction);
                 document.getElementById("countdown").innerHTML = "EXPIRED";
-                
-                // Play the sound
-                const audioPlayer = document.getElementById("audioPlayer");
-                audioPlayer.play().catch(error => {
-                    console.error('Error playing audio:', error);
-                });
             }
         }, 1000);
-
-        // Function to play audio when button is clicked
-        function playAudio() {
-            const audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.play().catch(error => {
-                console.error('Error playing audio:', error);
-            });
-        }
     </script>
 </body>
 </html>
