@@ -16,18 +16,85 @@
             background-image: url('font.png');
             background-size: cover;
             background-position: center;
-            font-family: Arial, sans-serif;
+            filter: blur(0px);
         }
-        #countdown {
-            color: white;
-            font-size: 50px;
+
+        #content-wrapper {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #blurred-box {
+            width: 80%;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-top: 50px;
+        }
+
+        .text-content {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        #profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-top: -60px; /* To position it halfway over the blurred box */
+            border: 5px solid rgba(255, 255, 255, 0);
+            background-color: rgba(255, 255, 255, 0);
+            position: relative; /* Necessary for positioning the GIF */
+        }
+
+        #profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #rain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px; /* Same as the profile picture width */
+            height: 120px; /* Same as the profile picture height */
+            z-index: 2; /* Ensure it appears above the profile picture */
+            overflow: hidden;
+        }
+
+        #rain-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
-    <div id="countdown"></div>
+    <div id="content-wrapper">
+        <div id="profile-picture">
+            <img src="hashi.png" alt="Profile Picture">
+            <div id="rain-overlay">
+                <img src="rain.gif" alt="Rain Overlay">
+            </div>
+        </div>
+        <div id="blurred-box">
+            <div id="countdown"></div>
+            <div class="text-content">
+                Développer C / C# / JS / PY<br>
+                Anime Passionate<br>
+                Joueur E-sport
+            </div>
+        </div>
+    </div>
     
     <!-- Audio element with controls for debugging -->
     <audio id="audioPlayer" src="song.mp3" preload="auto" loop></audio>
@@ -57,12 +124,7 @@
             // Find the distance between now and the countdown date
             const distance = countDownDate - now;
             
-            // Time calculations for days, hours, minutes, and seconds
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
+           
             // Display the result in the element with id="countdown"
             document.getElementById("countdown").innerHTML = 
                 days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
